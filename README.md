@@ -1,36 +1,106 @@
-Jarvis AI Voice Assistant
-An AI-powered desktop voice assistant built with Python, inspired by Jarvis from Iron Man. Jarvis can listen for voice commands, open websites, play music, fetch live news headlines, and answer questions using Google’s Gemini AI.
+# 🎙️ Jarvis AI Voice Assistant
 
-Features
-One-Shot Execution: Processes your wake word and your command in the same breath for zero lag (e.g., "Jarvis, open YouTube").
+An AI-powered desktop voice assistant built with Python, inspired by **J.A.R.V.I.S.** from Iron Man.
 
-Real-Time Speech Recognition: Utilizes Google Speech Recognition to process spoken inputs cleanly.
+Jarvis combines real-time speech recognition, intelligent command execution, and Google's Gemini AI to create a fast, responsive voice-controlled desktop assistant. It can open websites, play music, fetch live news headlines, answer questions, and interact naturally through voice.
 
-AI-Powered Conversations: Leverages the advanced gemini-2.5-flash-lite model for short, proactive, smart answers.
+---
 
-Dynamic Noise Calibration: Automatically samples background ambient hums in just 0.5 seconds to accurately isolate your voice.
+## ✨ Features
 
-Custom Web & Music Triggers: Easily open daily web pages or launch tracks directly from a local media library module.
+### 🚀 One-Shot Command Execution
 
-Tech Stack
-Language: Python 3.13 (Isolated environment to prevent global package conflicts)
+Issue your wake word and command in a single sentence for instant responses.
 
-Libraries & Frameworks:
+**Example:**
 
-SpeechRecognition (Audio capture & processing)
+```text
+"Jarvis, open YouTube"
+"Jarvis, play Believer"
+"Jarvis, explain recursion"
+```
 
-google-genai (Official Google Gemini SDK)
+No waiting for a secondary prompt.
 
-pygame-ce (Modern Community Edition for lightning-fast audio handling)
+---
 
-gTTS & pyttsx3 (Text-to-Speech processing)
+### 🎤 Real-Time Speech Recognition
 
-requests & python-dotenv (API requests & secure configuration environment)
+Uses Google's Speech Recognition engine to accurately process spoken commands with minimal latency.
 
-APIs Used: Google Gemini API, NewsAPI, Google Speech Recognition
+---
 
-Project Structure
-Plaintext
+### 🤖 AI-Powered Conversations
+
+Powered by Google's **Gemini 2.5 Flash Lite** model, providing:
+
+* Fast responses
+* Context-aware answers
+* Smart explanations
+* Natural interactions
+
+---
+
+### 🔊 Dynamic Noise Calibration
+
+Automatically samples ambient noise in approximately **0.5 seconds** and adjusts microphone sensitivity to improve recognition accuracy.
+
+---
+
+### 🌐 Web Automation
+
+Open frequently used websites through simple voice commands.
+
+Examples:
+
+* Open YouTube
+* Open Google
+* Open GitHub
+* Open LinkedIn
+
+---
+
+### 🎵 Music Playback
+
+Play songs directly from your local music library using custom voice triggers.
+
+---
+
+### 📰 Live News Headlines
+
+Fetches and reads the latest headlines using the NewsAPI service.
+
+---
+
+## 🛠️ Tech Stack
+
+### Language
+
+* Python 3.13
+
+### Libraries & Frameworks
+
+| Package           | Purpose                             |
+| ----------------- | ----------------------------------- |
+| SpeechRecognition | Audio capture and speech processing |
+| google-genai      | Google Gemini SDK                   |
+| pygame-ce         | Fast audio playback                 |
+| gTTS              | Online text-to-speech               |
+| pyttsx3           | Offline text-to-speech              |
+| requests          | API communication                   |
+| python-dotenv     | Environment variable management     |
+
+### APIs Used
+
+* Google Gemini API
+* NewsAPI
+* Google Speech Recognition
+
+---
+
+## 📂 Project Structure
+
+```text
 Jarvis-AI/
 │
 ├── main.py
@@ -38,68 +108,199 @@ Jarvis-AI/
 ├── .env
 ├── requirements.txt
 └── README.md
-Installation
-1. Clone the Repository
-Bash
+```
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/hamzatahir06/Jarvis-Virtual-Assistant.git
+
 cd Jarvis-Virtual-Assistant
-2. Create an Isolated Virtual Environment (Windows Only)
-Force the virtual environment to hook into Python 3.13 to prevent package compilation errors:
+```
 
-PowerShell
+---
+
+### 2. Create a Virtual Environment
+
+Using Python 3.13 is strongly recommended.
+
+#### Windows
+
+```powershell
 py -3.13 -m venv .venv
-.venv\Scripts\Activate.ps1
-3. Install the Bulletproof Dependencies
-PowerShell
-pip install -r requirements.txt
-Environment Variables
-Create a file named .env in the root folder of your project and populate it with your personal API keys:
 
-Ini, TOML
+.venv\Scripts\Activate.ps1
+```
+
+---
+
+### 3. Install Dependencies
+
+```powershell
+pip install -r requirements.txt
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
 GEMINI_API_KEY=your_gemini_api_key_here
 NEWS_API=your_newsapi_key_here
-Gemini API Key: Obtain one for free at Google AI Studio.
+```
 
-NewsAPI Key: Register for an access token at NewsAPI.org.
+### Obtain API Keys
 
-Configuration Tuning
-The assistant relies on optimized audio configurations inside main.py for snappy responses:
+#### Gemini API Key
 
-Python
-r.energy_threshold = 300           # Minimum loudness bar to ignore distant whispers
-r.dynamic_energy_threshold = True  # Auto-adjusts sensitivity based on room noise
-r.pause_threshold = 0.7            # Wait threshold before compiling your command
-phrase_time_limit = 2.5            # Max recording duration per stream window
-Demo Flow & Supported Commands
-Fast One-Shot Triggers (Recommended)
-You do not have to wait for Jarvis to reply to you. Speak your request natively in one sentence:
+1. Visit Google AI Studio
+2. Create a new API key
+3. Copy it into your `.env` file
 
-User: "Jarvis, open YouTube" -> Launches https://youtube.com instantly.
+#### NewsAPI Key
 
-User: "Jarvis, play believer" -> Fetches and plays the track from Music_Library.py.
+1. Register at NewsAPI.org
+2. Generate an API key
+3. Add it to your `.env` file
 
-User: "Jarvis, news" -> Pulls the top 3 US headlines and reads them out loud.
+---
 
-User: "Jarvis, explain recursion" -> Hands off the query directly to Gemini AI.
+## 🎛️ Audio Configuration
 
-Two-Step Fallback
-If you state the wake word cleanly on its own, Jarvis will poll the microphone sequentially:
+The following settings are optimized for responsiveness and recognition accuracy:
 
-User: "Jarvis"
+```python
+r.energy_threshold = 300
+r.dynamic_energy_threshold = True
+r.pause_threshold = 0.7
 
-Jarvis: "Ya?"
+phrase_time_limit = 2.5
+```
 
-User (Within 2.5s window): "Open GitHub" -> Executes requested command wrapper.
+### Parameter Explanation
 
-To stop the assistant entirely, say: "Stop Jarvis".
+| Setting                  | Description                          |
+| ------------------------ | ------------------------------------ |
+| energy_threshold         | Ignores low-volume background sounds |
+| dynamic_energy_threshold | Automatically adapts to room noise   |
+| pause_threshold          | Determines when speech has ended     |
+| phrase_time_limit        | Maximum recording duration           |
 
-Security Notes
-Never upload your personal .env file to public repositories. Ensure your local workspace includes a .gitignore profile mapping the following rules:
+---
 
-Plaintext
+## 🎯 Supported Commands
+
+### One-Shot Commands (Recommended)
+
+#### Open Websites
+
+```text
+Jarvis, open YouTube
+Jarvis, open GitHub
+Jarvis, open Google
+```
+
+#### Play Music
+
+```text
+Jarvis, play Believer
+```
+
+#### Fetch News
+
+```text
+Jarvis, news
+```
+
+Reads the latest headlines aloud.
+
+#### Ask Gemini AI
+
+```text
+Jarvis, explain recursion
+Jarvis, what is quantum computing?
+Jarvis, summarize Python decorators
+```
+
+---
+
+## 🔄 Two-Step Fallback Mode
+
+If you only say the wake word:
+
+```text
+User: Jarvis
+
+Jarvis: Ya?
+
+User: Open GitHub
+```
+
+The assistant will listen for a follow-up command within a short time window.
+
+---
+
+## 🛑 Stopping the Assistant
+
+Say:
+
+```text
+Stop Jarvis
+```
+
+to safely terminate the assistant.
+
+---
+
+## 🔒 Security Notes
+
+### Never Commit Sensitive Files
+
+Your `.env` file contains private API keys and should never be uploaded to GitHub.
+
+Create a `.gitignore` file containing:
+
+```gitignore
 .venv/
 __pycache__/
 .env
 *.mp3
-License
+```
+
+---
+
+## 🚧 Future Improvements
+
+Planned enhancements include:
+
+* Weather information
+* System control commands
+* Email integration
+* Smart home support
+* Wake-word optimization
+* GUI dashboard
+* Cross-platform compatibility
+
+---
+
+## 📜 License
+
 This project is licensed under the MIT License.
+
+Feel free to fork, modify, and distribute it under the terms of the license.
+
+---
+
+## 👨‍💻 Author
+
+**Hamza Tahir**
+
+GitHub: https://github.com/hamzatahir06
+
+Built with Python, Gemini AI, and a passion for creating intelligent voice assistants.

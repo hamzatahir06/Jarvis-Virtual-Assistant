@@ -1,6 +1,6 @@
 import speech_recognition as sr
 import pyttsx3, webbrowser, requests
-import Music_Library
+import music_library
 from google import genai
 from google.genai import types
 import os
@@ -70,7 +70,7 @@ def ProcessCommand(c: str):
         try:
             # FIX: Captures multi-word songs safely
             song_name = c.replace("play ", "").strip()
-            link = Music_Library.Music.get(song_name)
+            link = music_library.Music.get(song_name)
             if link: 
                 speak(f"Playing {song_name} from your library.")
                 webbrowser.open(link)
@@ -155,4 +155,3 @@ if __name__ == "__main__":
     except (AssertionError, AttributeError, OSError):
         print("\n[CRITICAL ERROR]: Microphone not found. Check Windows Privacy Settings.")
 
->> git remote add origin https://github.com/hamzatahir06/Jarvis-Virtual-Assistant.git
