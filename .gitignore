@@ -1,0 +1,17 @@
+# Secrets
+.env
+
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Jarvis Temp Files
+*.mp3
+
+# IDE Settings
+.vscode/
